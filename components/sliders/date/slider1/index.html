@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <div style=" position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <div>
+        <span id="choosenDate"></span>
+    </div>
+    <div>
+        <input type="range" id="myAwesomeDate" min="0" max="2147483647">
+    </div>
+  </div>
+  <script>
+    function update() {
+        var a = new Date(myAwesomeDate.value * 1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var hour = a.getHours();
+        var min = a.getMinutes();
+        var sec = a.getSeconds();
+        var time = date + ' ' + month + ' ' + year + ' ' + ("0" + hour).slice(-2) + ':' +("0" +  min).slice(-2) + ':' + ("0" +  sec).slice(-2);
+        
+        choosenDate.innerHTML = time;
+
+      requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
+  </script>
+</html>

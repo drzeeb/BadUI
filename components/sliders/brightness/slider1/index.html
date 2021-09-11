@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <div style=" position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <label>Light</label>
+    <input type="range" id="color">
+    <label>Dark</label>
+  </div>
+  <script>
+    function update() {
+      const percent = color.value / 100;
+      const [r, g, b] = [0xFF, 0xFF, 0xFF].map((c) => Math.floor(c * percent));
+      const textColor = r << 16 | g << 8 | b;
+      const bgColor = 0xFFFFFF - textColor;
+      document.body.style = `color: #${textColor.toString(16).padStart(6, '0')}; background-color: #${bgColor.toString(16).padStart(6, '0')}`;
+
+      requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
+  </script>
+</html>
